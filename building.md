@@ -10,7 +10,7 @@ The `IBuildProject` and `IBuildProjectInternal` interfaces are exposed as part o
 * Get build properties for full build and design-time build
 * Check whether the project is considered up-to-date.
 
-The result of a build is contained in a `IBuildResult`.
+The result of a build is contained in a `IBuildResult`. The `IBuildSupport` interface can be used to determine information about a project's build, such as what targets are run for a particular action, the current status of the project's build (represented as `BuildStatus`), and whether the project supports particular build actions.
 
 # Design-time Builds
 
@@ -39,7 +39,6 @@ The `IFileTimestampCache` service can be imported and used to cache file timesta
 * IBuildManagerHost.cs
 * IBuildManagerHostBatchingService.cs
 * IBuildRequest.cs
-* IBuildSupport.cs
 * ICommandLinePreviewProvider.cs
 * IHostObject.cs
 * IHostObjectProvider.cs
