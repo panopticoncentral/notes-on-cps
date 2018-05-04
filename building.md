@@ -28,6 +28,10 @@ The internal `IDesignTimeBuilderService` is a `ConfiguredProject` service that m
 
 If a project supports caching the result of a design-time build, it can provide a `IDesignTimeBuildCacheParticipant` instance and use the `DesignTimeBuildCacheState` enum to indicate cache state.
 
+# Host Objects
+
+For compatibility with existing Visual Studio extensions, specifically [single file generators](https://docs.microsoft.com/en-us/visualstudio/extensibility/internals/implementing-single-file-generators), MSBuild host objects can be provided at the `UnconfiguredProject` level through the `IHostObjectProvider` and `IHostObject` interfaces.
+
 # Deploying and Publishing
 
 Projects that want to suport deploy and publish actions can export `IDeployProvider` and `IPublishProvider` at the `ConfiguredProject` level.
@@ -42,8 +46,6 @@ The `IFileTimestampCache` service can be imported and used to cache file timesta
 
 * Dataflow
 * ICommandLinePreviewProvider.cs
-* IHostObject.cs
-* IHostObjectProvider.cs
 * Logging
 * OutputGroup
 * Properties
