@@ -3,7 +3,7 @@ Build Services
 
 # Building
 
-The `IBuildProject` interface is exposed as part of the services of a `ConfiguredProject`. It allows callers to:
+The `IBuildProject` and `IBuildProjectInternal` interfaces are exposed as part of the services of a `ConfiguredProject`. They allow callers to:
 
 * Request a build for the project.
 * Subscribe to a block that contains design-time build properties.
@@ -38,7 +38,6 @@ The `IFileTimestampCache` service can be imported and used to cache file timesta
 * IBuildFiles.cs
 * IBuildManagerHost.cs
 * IBuildManagerHostBatchingService.cs
-* IBuildProjectInternal.cs
 * IBuildRequest.cs
 * IBuildSupport.cs
 * ICommandLinePreviewProvider.cs
