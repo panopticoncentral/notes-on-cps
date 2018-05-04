@@ -12,6 +12,12 @@ The `IBuildProject` interface is exposed as part of the services of a `Configure
 
 The result of a build is contained in a `IBuildResult`.
 
+# Design-time Builds
+
+A _design-time build_ is a build that the project system runs to determine information about the output of the project without actually executing the full build. (For example, the design-time build only collects the input to a compiler like `csc`, it doesn't actually execute the compiler itself.)
+
+The internal `IDesignTimeBuilderService` is a `ConfiguredProject` service that manages the relationship between the Common Project System and the underlying Project Services design-time builder. The internal `IDesignTimeBuildManagerService` and `IDesignTimeBuildManagerServiceInternal` interfaces are `ConfiguredProject` services that can be used to initiate design-time builds. The result of a design-time build is returned as a `ProjectDesignTimeBuildResult` instance. If a project supports caching the result of a design-time build, it can provide a `IDesignTimeBuildCacheParticipant` instance.
+
 # Deploying and Publishing
 
 Projects that want to suport deploy and publish actions can export `IDeployProvider` and `IPublishProvider` at the `ConfiguredProject` level.
@@ -36,14 +42,9 @@ The `IFileTimestampCache` service can be imported and used to cache file timesta
 * IBuildRequest.cs
 * IBuildSupport.cs
 * ICommandLinePreviewProvider.cs
-* IDesignTimeBuildCacheParticipant.cs
-* IDesignTimeBuilderService.cs
-* IDesignTimeBuildManagerService.cs
-* IDesignTimeBuildManagerServiceInternal.cs
 * IHostObject.cs
 * IHostObjectProvider.cs
 * Logging
 * OutputGroup
-* ProjectDesignTimeBuildResult.cs
 * Properties
 * Utilities
