@@ -10,13 +10,23 @@ The `IBuildProject` and `IBuildProjectInternal` interfaces are exposed as part o
 * Get build properties for full build and design-time build
 * Check whether the project is considered up-to-date.
 
-The result of a build is contained in a `IBuildResult`. The `IBuildSupport` interface can be used to determine information about a project's build, such as what targets are run for a particular action, the current status of the project's build (represented as `BuildStatus`), and whether the project supports particular build actions.
+The result of a build is contained in a `IBuildResult`. The `IBuildSupport` interface can be used to determine information about a project's build, such as what targets are run for a particular `BuildAction`, the current status of the project's build (represented as `BuildStatus`), and whether the project supports particular `BuildAction`s.
+
+A `ConfiguredProject` may support compiling individual files rather than the whole project at once. If it supports this, it exports the `IBuildFiles` interface, with the result returned in a `PrepareBuildFilesResult` structure.
+
+# Build Hosts
+
+When a project is built, a _build manager host_ is the component that actually does the build, managing an instance of a MSBuild build manager. Build manager hosts export the `IBuildManagerHost` interface, and build manager hosts that support batching of build requests export the `IBatchingBuildManagerHost` interface. Build manager hosts derive from the `BuildManagerHostBase` class. Batching build manager hosts can use the project service `IBuildManagerHostBatchingService` to schedule batched builds.
+
+Build manager hosts represent build requests using the `IBuildRequest` interface.
 
 # Design-time Builds
 
 A _design-time build_ is a build that the project system runs to determine information about the output of the project without actually executing the full build. (For example, the design-time build only collects the input to a compiler like `csc`, it doesn't actually execute the compiler itself.)
 
-The internal `IDesignTimeBuilderService` is a `ConfiguredProject` service that manages the relationship between the Common Project System and the underlying Project Services design-time builder. The internal `IDesignTimeBuildManagerService` and `IDesignTimeBuildManagerServiceInternal` interfaces are `ConfiguredProject` services that can be used to initiate design-time builds. The result of a design-time build is returned as a `ProjectDesignTimeBuildResult` instance. If a project supports caching the result of a design-time build, it can provide a `IDesignTimeBuildCacheParticipant` instance.
+The internal `IDesignTimeBuilderService` is a `ConfiguredProject` service that manages the relationship between the Common Project System and the underlying Project Services design-time builder. The internal `IDesignTimeBuildManagerService` and `IDesignTimeBuildManagerServiceInternal` interfaces are `ConfiguredProject` services that can be used to initiate design-time builds. The result of a design-time build is returned as a `ProjectDesignTimeBuildResult` instance. 
+
+If a project supports caching the result of a design-time build, it can provide a `IDesignTimeBuildCacheParticipant` instance and use the `DesignTimeBuildCacheState` enum to indicate cache state.
 
 # Deploying and Publishing
 
@@ -30,15 +40,7 @@ The `IFileTimestampCache` service can be imported and used to cache file timesta
 
 # Scratch
 
-* BuildAction.cs
-* BuildManagerHostBase.cs
 * Dataflow
-* DesignTimeBuildCacheState.cs
-* IBatchingBuildManagerHost.cs
-* IBuildFiles.cs
-* IBuildManagerHost.cs
-* IBuildManagerHostBatchingService.cs
-* IBuildRequest.cs
 * ICommandLinePreviewProvider.cs
 * IHostObject.cs
 * IHostObjectProvider.cs
