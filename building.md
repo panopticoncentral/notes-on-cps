@@ -12,6 +12,10 @@ The `IBuildProject` interface is exposed as part of the services of a `Configure
 
 The result of a build is contained in a `IBuildResult`.
 
+# Deploying and Publishing
+
+Projects that want to suport deploy and publish actions can export `IDeployProvider` and `IPublishProvider` at the `ConfiguredProject` level.
+
 # Up-to-date Checking
 
 A project system can export a `IBuildUpToDateCheckProvider` interface, which is tied to an instance of a `ConfiguredProject`. The interface will them be called to determine whether a project is known to be up-to-date and the build can be skipped.
@@ -32,14 +36,12 @@ The `IFileTimestampCache` service can be imported and used to cache file timesta
 * IBuildRequest.cs
 * IBuildSupport.cs
 * ICommandLinePreviewProvider.cs
-* IDeployProvider.cs
 * IDesignTimeBuildCacheParticipant.cs
 * IDesignTimeBuilderService.cs
 * IDesignTimeBuildManagerService.cs
 * IDesignTimeBuildManagerServiceInternal.cs
 * IHostObject.cs
 * IHostObjectProvider.cs
-* IPublishProvider.cs
 * Logging
 * OutputGroup
 * ProjectDesignTimeBuildResult.cs
