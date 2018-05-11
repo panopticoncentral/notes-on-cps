@@ -14,11 +14,15 @@ The result of a build is contained in a `IBuildResult`. The `IBuildSupport` inte
 
 A `ConfiguredProject` may support compiling individual files rather than the whole project at once. If it supports this, it exports the `IBuildFiles` interface, with the result returned in a `PrepareBuildFilesResult` structure.
 
-# Build Hosts
+# Build Manager Hosts
 
 When a project is built, a _build manager host_ is the component that actually does the build, managing an instance of a MSBuild build manager. Build manager hosts export the `IBuildManagerHost` interface, and build manager hosts that support batching of build requests export the `IBatchingBuildManagerHost` interface. Build manager hosts derive from the `BuildManagerHostBase` class. Batching build manager hosts can use the project service `IBuildManagerHostBatchingService` to schedule batched builds.
 
 Build manager hosts represent build requests using the `IBuildRequest` interface.
+
+## Standard Hosts
+
+Three standard build manager hosts are provided. The `IndependentBuildManagerHost` is provided by the base framework and builds using its own private MSBuild `BuildManager`, meaning that all projects have their own `BuildManager`. When running in Visual Studio, the `SolutionBuildManagerParticipant` builds using a `BuildManager` shared among all projects in the solution. The `BuildManagerAccessorDesignTime` builds using the Visual Studio `IVsBuildManagerAccessor3` interface and is used internally for design-time builds that cannot run out of process. 
 
 # Design-time Builds
 
