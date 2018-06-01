@@ -32,6 +32,8 @@ The internal `IDesignTimeBuilderService` is a `ConfiguredProject` service that m
 
 If a project supports caching the result of a design-time build, it can provide a `IDesignTimeBuildCacheParticipant` instance and use the `DesignTimeBuildCacheState` enum to indicate cache state.
 
+Note that if a project is dirty in memory, the Project Services design-time builder cannot be used because it runs in another process (and therefore does not have access to the in-memory state of the project). In that situation, the project will be built in-process. (Regular builds always do a save of the project first, so this is not an issue for them.)
+
 # Host Objects
 
 For compatibility with existing Visual Studio extensions, specifically [single file generators](https://docs.microsoft.com/en-us/visualstudio/extensibility/internals/implementing-single-file-generators), MSBuild host objects can be provided at the `UnconfiguredProject` level through the `IHostObjectProvider` and `IHostObject` interfaces.
