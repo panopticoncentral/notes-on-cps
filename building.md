@@ -7,7 +7,7 @@ The `IBuildProject` and `IBuildProjectInternal` interfaces are exposed as part o
 
 * Request a build for the project.
 * Subscribe to a block that contains design-time build properties.
-* Get build properties for full build and design-time build
+* Get build properties for full build and design-time build.
 * Check whether the project is considered up-to-date.
 
 The result of a build is contained in a `IBuildResult`. The `IBuildSupport` interface can be used to determine information about a project's build, such as what targets are run for a particular `BuildAction`, the current status of the project's build (represented as `BuildStatus`), and whether the project supports particular `BuildAction`s.
@@ -46,13 +46,6 @@ Projects that want to suport deploy and publish actions can export `IDeployProvi
 
 A project system can export a `IBuildUpToDateCheckProvider` interface, which is tied to an instance of a `ConfiguredProject`. The interface will them be called to determine whether a project is known to be up-to-date and the build can be skipped.
 
+An up-to-date check providers can choose whether it should be run before critical tasks are finished, or whether it has to wait until after all critical tasks have been finished. (A critical task is one that must complete before an operation can be started, for example NuGet restore must be completed before a Build operation can start.) This is controlled by the `ExportMetadata` Boolean value `BeforeDrainCriticalTasks`. It is better, if at all possible, to run before critical tasks are finished. 
+
 The `IFileTimestampCache` service can be imported and used to cache file timestamps across all projects. Be aware, though, that the only updating the project system does for the cache is clearing it when a build happens.
-
-# Scratch
-
-* Dataflow
-* ICommandLinePreviewProvider.cs
-* Logging
-* OutputGroup
-* Properties
-* Utilities
