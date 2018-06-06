@@ -1,5 +1,5 @@
-Project Service Serrvices
-=========================
+Project Service Services
+========================
 
 Services:
 
