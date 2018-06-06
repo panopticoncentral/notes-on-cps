@@ -1,13 +1,13 @@
 Project Service Services
 ========================
 
-Services:
+#Services
 
 |Service                                                              |Description           |
 |---------------------------------------------------------------------|----------------------|
 |[`IBuildManagerHostBatchingService`](building.md#build-manager-hosts)|Allows batching builds|
 
-Extensions:
+#Extensions
 
 |Extension                                             |Description                                                             |
 |------------------------------------------------------|------------------------------------------------------------------------|
@@ -16,14 +16,14 @@ Extensions:
 `ConfiguredProject` Services
 ============================
 
-Services:
+#Services
 
 |Service                                                      |Description                                     |
 |-------------------------------------------------------------|------------------------------------------------|
 |[`IBuildProject`](building.md#building)                      |Allows building the project                     |
 |[`IBuildSupport`](building.md#building)                      |Information about building the project          |
 
-Extensions:
+#Extensions
 
 |Extension                                                    |Description                                     |
 |-------------------------------------------------------------|------------------------------------------------|
