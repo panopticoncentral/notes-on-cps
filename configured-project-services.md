@@ -3,7 +3,7 @@ Project Service Serrvices
 
 Services:
 
-|Extension                                                            |Description           |
+|Service                                                              |Description           |
 |---------------------------------------------------------------------|----------------------|
 |[`IBuildManagerHostBatchingService`](building.md#build-manager-hosts)|Allows batching builds|
 
