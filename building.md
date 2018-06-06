@@ -3,20 +3,20 @@ Build Services
 
 # Building
 
-The `IBuildProject` and `IBuildProjectInternal` interfaces are exposed as part of the services of a `ConfiguredProject`. They allow callers to:
+The `ConfiguredProject` system service `IBuildProject` allows callers to:
 
 * Request a build for the project.
 * Subscribe to a block that contains design-time build properties.
 * Get build properties for full build and design-time build.
 * Check whether the project is considered up-to-date.
 
-The result of a build is contained in a `IBuildResult`. The `IBuildSupport` interface can be used to determine information about a project's build, such as what targets are run for a particular `BuildAction`, the current status of the project's build (represented as `BuildStatus`), and whether the project supports particular `BuildAction`s.
+The result of a build is contained in a `IBuildResult`. The `ConfiguredProject` system service `IBuildSupport` can be used to determine information about a project's build, such as what targets are run for a particular `BuildAction`, the current status of the project's build (represented as `BuildStatus`), and whether the project supports a particular `BuildAction`.
 
-A `ConfiguredProject` may support compiling individual files rather than the whole project at once. If it supports this, it exports the `IBuildFiles` interface, with the result returned in a `PrepareBuildFilesResult` structure.
+The `ConfiguredProject` extension `IBuildFiles` supports compiling individual files rather than the whole project at once. The result is returned in a `PrepareBuildFilesResult` structure.
 
 # Build Manager Hosts
 
-When a project is built, a _build manager host_ is the component that actually does the build, managing an instance of a MSBuild build manager. Build manager hosts export the `IBuildManagerHost` interface, and build manager hosts that support batching of build requests export the `IBatchingBuildManagerHost` interface. Build manager hosts derive from the `BuildManagerHostBase` class. Batching build manager hosts can use the project service `IBuildManagerHostBatchingService` to schedule batched builds.
+When a project is built, a _build manager host_ is the component that actually does the build, managing an instance of a MSBuild build manager. The project service extension `IBuildManagerHost` defines a new build manager, and build manager hosts that support batching of build requests also implements the `IBatchingBuildManagerHost` interface. Batching build manager hosts can use the project service system service `IBuildManagerHostBatchingService` to schedule batched builds.
 
 Build manager hosts represent build requests using the `IBuildRequest` interface.
 
