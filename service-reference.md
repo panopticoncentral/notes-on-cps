@@ -1,48 +1,29 @@
-# Project System
+# Service Reference
 
-## Services
+## Project System
 
-|Service                                                              |Description                                         |
-|---------------------------------------------------------------------|----------------------------------------------------|
-|[`IBuildManagerHostBatchingService`](building.md#build-manager-hosts)|Allows batching builds                              |
-|[`IFileTimestampCache`](building.md#up-to-date-checking)             |Allows caching file timestamps for up-to-date checks|
+|Name                                                                 |Type     |Description                                                             |
+|---------------------------------------------------------------------|---------|------------------------------------------------------------------------|
+|[`IBuildManagerHost`](building.md#build-manager-hosts)               |Extension|Defines a build manager (can also implement `IBatchingBuildManagerHost`)|
+|[`IBuildManagerHostBatchingService`](building.md#build-manager-hosts)|Service  |Allows batching builds                                                  |
+|[`IFileTimestampCache`](building.md#up-to-date-checking)             |Service  |Allows caching file timestamps for up-to-date checks                    |
 
-## Extensions
+## Unconfigured Projects
 
-|Extension                                             |Description                                                             |
-|------------------------------------------------------|------------------------------------------------------------------------|
-|[`IBuildManagerHost`](building.md#build-manager-hosts)|Defines a build manager (can also implement `IBatchingBuildManagerHost`)|
+|Name                                             |Type|Description                      |
+|-------------------------------------------------|----|---------------------------------|
+|[`IHostObjectProvider`](building.md#host-objects)|Host|Provides host objects for builds.|
 
-# `UnconfiguredProject`
+## Configured Projects
 
-## Host Services
-
-|Service                                          |Description                      |
-|-------------------------------------------------|---------------------------------|
-|[`IHostObjectProvider`](building.md#host-objects)|Provides host objects for builds.|
-
-# `ConfiguredProject`
-
-## Services
-
-|Service                                                           |Description                                   |
-|------------------------------------------------------------------|----------------------------------------------|
-|[`IBuildProject`](building.md#building)                           |Allows building the project                   |
-|[`IBuildSupport`](building.md#building)                           |Information about building the project        |
-|[`IDesignTimeBuildManagerService`](building.md#design-time-builds)|Allows doing design-time builds (**internal**)|
-
-## Host Services
-
-|Service                                                      |Description                                      |
-|-------------------------------------------------------------|-------------------------------------------------|
-|[`IDesignTimeBuilderService`](building.md#design-time-builds)|Provides design-time build service (**internal**)|
-
-## Extensions
-
-|Extension                                                           |Description                                                      |
-|--------------------------------------------------------------------|-----------------------------------------------------------------|
-|[`IBuildFiles`](building.md#building)                               |Allows building individual files in project                      |
-|[`IBuildUpToDateCheckProvider`](building.md#up-to-date-checking)    |Allows projects to be checked for up-to-date status before build |
-|[`IDeployProvider`](building.md#deploying-and-publishing)           |Allows Deploy action to be performed on project                  |
-|[`IDesignTimeBuildCacheParticipant`](building.md#design-time-builds)|Allows caching the result of design-time builds (**internal**)   |
-|[`IPublishProvider`](building.md#deploying-and-publishing)          |Allows Publish action to be performed on project              |
+|Name                                                                |Type     |Description                                                      |
+|--------------------------------------------------------------------|---------|-----------------------------------------------------------------|
+|[`IBuildFiles`](building.md#building)                               |Extension|Allows building individual files in project                      |
+|[`IBuildProject`](building.md#building)                             |Service  |Allows building the project                                      |
+|[`IBuildSupport`](building.md#building)                             |Service  |Information about building the project                           |
+|[`IBuildUpToDateCheckProvider`](building.md#up-to-date-checking)    |Extension|Allows projects to be checked for up-to-date status before build |
+|[`IDeployProvider`](building.md#deploying-and-publishing)           |Extension|Allows Deploy action to be performed on project                  |
+|[`IDesignTimeBuildCacheParticipant`](building.md#design-time-builds)|Extension|Allows caching the result of design-time builds (**internal**)   |
+|[`IDesignTimeBuilderService`](building.md#design-time-builds)       |Host     |Provides design-time build service (**internal**)                |
+|[`IDesignTimeBuildManagerService`](building.md#design-time-builds)  |Service  |Allows doing design-time builds (**internal**)                   |
+|[`IPublishProvider`](building.md#deploying-and-publishing)          |Extension|Allows Publish action to be performed on project                 |
