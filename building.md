@@ -27,7 +27,7 @@ Three standard build manager hosts are provided. The `IndependentBuildManagerHos
 
 A _design-time build_ is a build that the project system runs to determine information about the output of the project without actually executing the full build. (For example, the design-time build only collects the input to a compiler like `csc.exe`, it doesn't actually execute the compiler itself.)
 
-The internal `ConfiguredProject` host service `IDesignTimeBuilderService` manages the relationship between the Common Project System and the underlying Project Services design-time builder. The internal `ConfiguredProject` service `IDesignTimeBuildManagerService` can be used to initiate design-time builds. The result of a design-time build is returned as a `ProjectDesignTimeBuildResult` instance. 
+The internal `ConfiguredProject` service `IDesignTimeBuildManagerService` can be used to initiate design-time builds. The internal `ConfiguredProject` host service `IDesignTimeBuilderService` manages the relationship between the design-time build manager service and the underlying Project Services design-time builder. The result of a design-time build is returned as a `ProjectDesignTimeBuildResult` instance. 
 
 The internal `ConfiguredProject` extension `IDesignTimeBuildCacheParticipant` allows a project to support caching the result of a design-time build. The `DesignTimeBuildCacheState` enum indicates cache state.
 
